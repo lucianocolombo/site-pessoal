@@ -1,10 +1,11 @@
 {
   "name": "site-pessoal",
   "version": "0.1.0",
-  "homepage": "https://lucianorogeriocolombo.github.io/site-pessoal",
+  "homepage": "https://lucianocolombo.github.io/site-pessoal",
   "private": true,
   "dependencies": {
     "16": "^0.0.2",
+    "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
