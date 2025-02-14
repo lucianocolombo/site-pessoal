@@ -1,26 +1,39 @@
+// src/pages/PortfolioPage.jsx
 import React from 'react';
 import { Container, Title, Card, Image, Text, Group, Button } from '@mantine/core';
 
-const Portfolio = () => {
+const PortfolioPage = () => {
   const projects = [
     {
       title: 'Projeto A',
-      image: 'project-a.jpg',
-      description: 'Descrição do projeto A.',
-      links: { repo: 'https://github.com/projeto-a', site: 'https://projeto-a.com' },
+      image: '/assets/project-a.jpg',
+      description: 'Uma descrição breve sobre o Projeto A.',
+      links: {
+        repo: 'https://github.com/projeto-a',
+        site: 'https://projeto-a.com',
+      },
+    },
+    {
+      title: 'Projeto B',
+      image: '/assets/project-b.jpg',
+      description: 'Uma descrição breve sobre o Projeto B.',
+      links: {
+        repo: 'https://github.com/projeto-b',
+        site: 'https://projeto-b.com',
+      },
     },
   ];
 
   return (
     <Container size="lg" py="xl">
-      <Title order={2} mb="xl">
-        Portfólio
+      <Title order={2} align="center" mb="xl">
+        Meus Projetos
       </Title>
-      <Group spacing="xl">
+      <Group spacing="xl" grow>
         {projects.map((project, index) => (
           <Card key={index} shadow="sm" p="lg" radius="md" withBorder>
             <Card.Section>
-              <Image src={`/assets/${project.image}`} alt={project.title} height={160} />
+              <Image src={project.image} alt={project.title} height={160} fit="cover" />
             </Card.Section>
             <Title order={3} mt="md">
               {project.title}
@@ -55,4 +68,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default PortfolioPage;

@@ -13,7 +13,7 @@ const Resume = () => {
   ];
 
   const academicEducation = [
-    { institution: 'Universidade XYZ', course: 'Ciência da Computação', year: '2018-2022' },
+    { institution: 'Instituto Federal de Santa Catarina', course: 'Ciência da Computação', year: '2018-2024' },
     { institution: 'Curso Online ABC', course: 'Desenvolvimento Web', year: '2021' },
   ];
 

@@ -1,4 +1,3 @@
-// Home.jsx
 import React from 'react';
 
 const Home = () => {
@@ -12,11 +11,11 @@ const Home = () => {
     <div>
       <section id="introduction">
         <img src="/assets/profile.jpg" alt="Foto de Perfil" />
-        <h1>Nome Completo</h1>
+        <h1>Luciano Rogério Colombo Sousa</h1>
         <p>Desenvolvedor Full Stack apaixonado por tecnologia.</p>
         <div className="social-links">
-          <a href="https://linkedin.com/in/seu-perfil" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/seu-perfil" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/luciano-rogerio-colombo-sousa-28068820b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/lucianocolombo" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </section>
 
@@ -30,11 +29,6 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
-
-      <section id="contact">
-        <h2>Contato</h2>
-        {/* Incluir formulário de contato aqui */}
       </section>
     </div>
   );
