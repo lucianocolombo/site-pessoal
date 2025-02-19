@@ -1,54 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Title, List, Paper, Text } from '@mantine/core';
+import { fetchExperiencias, fetchFormacao } from '../api';
 
 const ResumePage = () => {
-  const professionalExperience = [
-    {
-      company: 'Empresa ABC',
-      role: 'Desenvolvedor Frontend',
-      period: 'Jan 2020 - Dez 2022',
-      responsibilities: ['Desenvolvimento de interfaces responsivas.', 'Integração com APIs REST.'],
-    },
-  ];
+    const [experiencias, setExperiencias] = useState([]);
+    const [formacao, setFormacao] = useState([]);
 
-  const academicEducation = [
-    { institution: 'Universidade XYZ', course: 'Ciência da Computação', year: '2018-2022' },
-  ];
+    useEffect(() => {
+        const loadData = async () => {
+            const expData = await fetchExperiencias();
+            const formData = await fetchFormacao();
+            setExperiencias(expData);
+            setFormacao(formData);
+        };
+        loadData();
+    }, []);
 
-  return (
-    <Container size="lg" py="xl">
-      <Title order={2} mb="md">
-        Experiência Profissional
-      </Title>
-      <Paper shadow="sm" p="md" withBorder>
-        <List>
-          {professionalExperience.map((exp, index) => (
-            <List.Item key={index}>
-              <Text weight={600}>{exp.company} - {exp.role} ({exp.period})</Text>
-              <List>
-                {exp.responsibilities.map((resp, idx) => (
-                  <List.Item key={idx}>{resp}</List.Item>
-                ))}
-              </List>
-            </List.Item>
-          ))}
-        </List>
-      </Paper>
+    return (
+        <Container size="lg" py="xl">
+            <Title order={2} mb="md">
+                Experiência Profissional
+            </Title>
+            <Paper shadow="sm" p="md" withBorder>
+                <List>
+                    {experiencias.map((exp) => (
+                        <List.Item key={exp.id}>
+                            <Text weight={600}>{exp.cargo} - {exp.empresa}</Text>
+                            <Text size="sm" color="dimmed">{exp.descricao}</Text>
+                        </List.Item>
+                    ))}
+                </List>
+            </Paper>
 
-      <Title order={2} mt="xl" mb="md">
-        Educação
-      </Title>
-      <Paper shadow="sm" p="md" withBorder>
-        <List>
-          {academicEducation.map((edu, index) => (
-            <List.Item key={index}>
-              <Text weight={600}>{edu.institution} - {edu.course} ({edu.year})</Text>
-            </List.Item>
-          ))}
-        </List>
-      </Paper>
-    </Container>
-  );
+            <Title order={2} mt="xl" mb="md">
+                Formação Acadêmica
+            </Title>
+            <Paper shadow="sm" p="md" withBorder>
+                <List>
+                    {formacao.map((item) => (
+                        <List.Item key={item.id}>
+                            <Text weight={600}>{item.instituicao} - {item.curso}</Text>
+                            <Text size="sm" color="dimmed">{item.descricao}</Text>
+                        </List.Item>
+                    ))}
+                </List>
+            </Paper>
+        </Container>
+    );
 };
 
 export default ResumePage;

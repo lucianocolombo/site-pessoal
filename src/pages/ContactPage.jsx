@@ -1,66 +1,65 @@
-// src/pages/ContactPage.jsx
 import React, { useState } from 'react';
-import { Container, Title, TextInput, Textarea, Button, Center } from '@mantine/core';
+import { Container, Title, TextInput, Textarea, Button, Center, Notification } from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+    const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const form = useForm({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        validate: {
+            name: (value) => (value.trim().length < 2 ? 'Nome muito curto' : null),
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Email inválido'),
+            message: (value) => (value.trim().length < 10 ? 'Mensagem muito curta' : null),
+        },
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Mensagem enviada com sucesso!');
-    setFormData({ name: '', email: '', message: '' });
-  };
+    const handleSubmit = () => {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000); // Limpa a notificação após 3 segundos
+    };
 
-  return (
-    <Container size="sm" py="xl">
-      <Title order={2} align="center" mb="xl">
-        Entre em Contato
-      </Title>
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          label="Nome"
-          placeholder="Seu nome"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          mb="sm"
-        />
-        <TextInput
-          label="Email"
-          placeholder="seuemail@example.com"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          mb="sm"
-        />
-        <Textarea
-          label="Mensagem"
-          placeholder="Escreva sua mensagem aqui..."
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          mb="md"
-        />
-        <Center>
-          <Button type="submit" color="blue" radius="md">
-            Enviar Mensagem
-          </Button>
-        </Center>
-      </form>
-    </Container>
-  );
+    return (
+        <Container size="sm" py="xl">
+            <Title order={2} align="center" mb="xl">
+                Entre em Contato
+            </Title>
+            {submitted && (
+                <Notification title="Mensagem enviada!" color="green" onClose={() => setSubmitted(false)}>
+                    Sua mensagem foi enviada com sucesso!
+                </Notification>
+            )}
+            <form onSubmit={form.onSubmit(handleSubmit)}>
+                <TextInput
+                    label="Nome"
+                    placeholder="Seu nome"
+                    {...form.getInputProps('name')}
+                    mb="sm"
+                />
+                <TextInput
+                    label="Email"
+                    placeholder="seuemail@example.com"
+                    {...form.getInputProps('email')}
+                    mb="sm"
+                />
+                <Textarea
+                    label="Mensagem"
+                    placeholder="Escreva sua mensagem aqui..."
+                    {...form.getInputProps('message')}
+                    mb="md"
+                />
+                <Center>
+                    <Button type="submit" color="blue" radius="md">
+                        Enviar Mensagem
+                    </Button>
+                </Center>
+            </form>
+        </Container>
+    );
 };
 
 export default ContactPage;

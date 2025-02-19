@@ -1,31 +1,37 @@
-// src/pages/SkillsPage.jsx
-import React from 'react';
-import { Container, Title, List, Paper, Text } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
+import { Container, Grid, Title } from '@mantine/core';
+import { fetchHabilidades } from '../api';
+import SkillCard from '../components/SkillCard';
 
 const SkillsPage = () => {
-  const skills = [
-    { name: 'React', icon: 'react-icon.png', description: 'Biblioteca JavaScript para interfaces de usuário.' },
-    { name: 'JavaScript', icon: 'js-icon.png', description: 'Linguagem de programação versátil.' },
-    { name: 'Node.js', icon: 'node-icon.png', description: 'Runtime JavaScript para back-end.' },
-  ];
+    const [habilidades, setHabilidades] = useState([]);
 
-  return (
-    <Container size="lg" py="xl">
-      <Title order={2} mb="md">
-        Habilidades
-      </Title>
-      <Paper shadow="sm" p="md" withBorder>
-        <List>
-          {skills.map((skill, index) => (
-            <List.Item key={index}>
-              <Text weight={600}>{skill.name}</Text>
-              <Text size="sm" color="dimmed">{skill.description}</Text>
-            </List.Item>
-          ))}
-        </List>
-      </Paper>
-    </Container>
-  );
+    useEffect(() => {
+        const loadHabilidades = async () => {
+            const data = await fetchHabilidades();
+            setHabilidades(data);
+        };
+        loadHabilidades();
+    }, []);
+
+    if (habilidades.length === 0) {
+        return <Title>Carregando...</Title>;
+    }
+
+    return (
+        <Container size="lg" py="xl">
+            <Title order={2} align="center" mb="xl">
+                Minhas Habilidades
+            </Title>
+            <Grid>
+                {habilidades.map((habilidade) => (
+                    <Grid.Col key={habilidade.id} span={6} md={4} lg={3}>
+                        <SkillCard skill={habilidade} />
+                    </Grid.Col>
+                ))}
+            </Grid>
+        </Container>
+    );
 };
 
 export default SkillsPage;
