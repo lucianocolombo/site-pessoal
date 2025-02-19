@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3001/api', // URL base do back-end
+    baseURL: 'https://portfolio-backend-uzwq.onrender.com/api', // URL do back-end no Render
 });
 
 export const fetchUsuarios = async () => {
