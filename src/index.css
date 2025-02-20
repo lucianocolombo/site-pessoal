@@ -2,62 +2,105 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f9fa; /* Fundo claro */
-  color: #212529; /* Cor do texto padrão */
-  line-height: 1.6; /* Espaçamento entre linhas */
+  background-color: #f8f9fa;
+  /* Fundo claro */
+  color: #212529;
+  /* Cor do texto padrão */
+  line-height: 1.6;
+  /* Espaçamento entre linhas */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
+    monospace;
 }
 
 /* Estilo para seções */
 section {
-  padding: 2rem; /* Espaçamento interno */
-  margin-bottom: 2rem; /* Espaçamento entre seções */
-  max-width: 1200px; /* Largura máxima para conteúdo centralizado */
-  margin-left: auto; /* Centraliza horizontalmente */
-  margin-right: auto; /* Centraliza horizontalmente */
+  padding: 2rem;
+  /* Espaçamento interno */
+  margin-bottom: 2rem;
+  /* Espaçamento entre seções */
+  max-width: 1200px;
+  /* Largura máxima para conteúdo centralizado */
+  margin-left: auto;
+  /* Centraliza horizontalmente */
+  margin-right: auto;
+  /* Centraliza horizontalmente */
 }
 
 /* Títulos */
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0; /* Remove margem superior dos títulos */
-  margin-bottom: 1rem; /* Adiciona margem inferior */
-  color: #343a40; /* Cor dos títulos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  /* Remove margem superior dos títulos */
+  margin-bottom: 1rem;
+  /* Adiciona margem inferior */
+  color: #343a40;
+  /* Cor dos títulos */
 }
 
 /* Links */
 a {
-  color: #007bff; /* Cor padrão dos links */
-  text-decoration: none; /* Remove sublinhado */
+  color: #007bff;
+  /* Cor padrão dos links */
+  text-decoration: none;
+  /* Remove sublinhado */
 }
 
 a:hover {
-  text-decoration: underline; /* Sublinha ao passar o mouse */
+  text-decoration: underline;
+  /* Sublinha ao passar o mouse */
 }
 
 /* Botões */
 button {
-  cursor: pointer; /* Altera o cursor ao passar sobre botões */
+  cursor: pointer;
+  /* Altera o cursor ao passar sobre botões */
+}
+
+/* Ocultar o menu mobile em telas grandes */
+.desktop-menu {
+  display: flex;
+}
+
+.mobile-menu {
+  display: none;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
   section {
-      padding: 1rem; /* Reduz o espaçamento interno em telas menores */
+    padding: 1rem;
+    /* Reduz o espaçamento interno em telas menores */
   }
 
   h1 {
-      font-size: 2rem; /* Reduz o tamanho do título principal */
+    font-size: 2rem;
+    /* Reduz o tamanho do título principal */
   }
 
   h2 {
-      font-size: 1.75rem; /* Reduz o tamanho do subtítulo */
+    font-size: 1.75rem;
+    /* Reduz o tamanho do subtítulo */
   }
+
+  .desktop-menu {
+    display: none;
+    /* Oculta o menu desktop */
+  }
+
+  .mobile-menu {
+    display: block;
+    /* Mostra o menu mobile */
+  }
+
 }

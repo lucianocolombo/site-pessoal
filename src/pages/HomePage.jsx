@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Title, SimpleGrid, Group } from '@mantine/core';
-import { fetchUsuario } from '../api';
+import { Title, Group } from '@mantine/core';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import UserProfileCard from '../components/UserProfileCard';
 import SkillCard from '../components/SkillCard';
 import SocialLinks from '../components/SocialLinks';
 import ContactForm from '../components/ContactForm';
+import { fetchUsuario } from '../api';
 
 function HomePage() {
     const [usuario, setUsuario] = useState(null);
@@ -18,31 +20,49 @@ function HomePage() {
     }, []);
 
     return (
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-            {/* Introdução Pessoal */}
-            <section>
-                <Title order={2} mb="md">Sobre Mim</Title>
-                <UserProfileCard usuario={usuario} />
-            </section>
+        <div>
+            {/* Cabeçalho */}
+            <Header />
 
-            {/* Habilidades */}
-            <section mt="xl">
-                <Title order={2} mb="md">Minhas Habilidades</Title>
-                <SimpleGrid cols={3} spacing="lg">
-                    <SkillCard icon="💻" title="Desenvolvimento Web" description="React, Node.js, Express" />
-                    <SkillCard icon="📱" title="Mobile" description="React Native, Flutter" />
-                    <SkillCard icon="🎨" title="Design UI/UX" description="Figma, Adobe XD" />
-                </SimpleGrid>
-            </section>
+            {/* Conteúdo Principal */}
+            <div style={{
+                maxWidth: '1400px', // Largura máxima ajustada para telas grandes
+                margin: '0 auto',
+                padding: '2rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
+                {/* Introdução Pessoal */}
+                <section style={{ width: '100%' }}>
+                    <Title order={2} mb="md">Sobre Mim</Title>
+                    <UserProfileCard usuario={usuario} />
+                </section>
 
-            {/* Contato */}
-            <section mt="xl">
-                <Title order={2} mb="md">Contato</Title>
-                <Group position="center">
-                    <SocialLinks />
-                </Group>
-                <ContactForm />
-            </section>
+                {/* Habilidades */}
+                <section mt="xl" style={{ width: '100%' }}>
+                    <Title order={2} mb="md">Minhas Habilidades</Title>
+                    <Group spacing="xl" position="center" style={{ flexWrap: 'wrap' }}>
+                        <SkillCard icon="💻" title="Desenvolvimento Web" description="React, Node.js, Express" />
+                        <SkillCard icon="📱" title="Mobile" description="React Native, Flutter" />
+                        <SkillCard icon="🎨" title="Design UI/UX" description="Figma, Adobe XD" />
+                        <SkillCard icon="📊" title="Análise de Dados" description="Python, Pandas, Matplotlib" />
+                        <SkillCard icon="⚙️" title="DevOps" description="Docker, Kubernetes, CI/CD" />
+                    </Group>
+                </section>
+
+                {/* Contato */}
+                <section mt="xl" style={{ width: '100%' }}>
+                    <Title order={2} mb="md">Contato</Title>
+                    <Group position="center">
+                        <SocialLinks />
+                    </Group>
+                    <ContactForm />
+                </section>
+            </div>
+
+            {/* Rodapé */}
+            <Footer />
         </div>
     );
 }
