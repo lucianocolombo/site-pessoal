@@ -1,31 +1,37 @@
 import React from 'react';
 import { Card, Image, Title, Text, Button, Group } from '@mantine/core';
 
-const ProjectCard = ({ project }) => {
+function ProjectCard({ title, description, image, links }) {
     return (
-        <Card shadow="sm" p="md" radius="md" withBorder>
+        <Card shadow="sm" p="lg" radius="md" withBorder>
             <Card.Section>
-                <Image src={project.imagem} alt={project.titulo} height={160} fit="cover" />
+                <Image src={`/assets/${image}`} alt={title} height={160} fit="contain" />
             </Card.Section>
-            <Title order={3} mt="md">
-                {project.titulo}
+            <Title order={4} mt="md">
+                {title}
             </Title>
             <Text size="sm" color="dimmed" mt="sm">
-                {project.descricao}
+                {description}
             </Text>
             <Group mt="md">
-                <Button
-                    variant="outline"
-                    color="blue"
-                    component="a"
-                    href={project.link}
-                    target="_blank"
-                >
-                    Ver Projeto
-                </Button>
+                {links.website && (
+                    <Button component="a" href={links.website} target="_blank" variant="light">
+                        Website
+                    </Button>
+                )}
+                {links.repository && (
+                    <Button component="a" href={links.repository} target="_blank" variant="light">
+                        Repositório
+                    </Button>
+                )}
+                {links.pdf && (
+                    <Button component="a" href={links.pdf} target="_blank" variant="light">
+                        PDF
+                    </Button>
+                )}
             </Group>
         </Card>
     );
-};
+}
 
 export default ProjectCard;

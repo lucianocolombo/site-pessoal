@@ -1,16 +1,16 @@
-// src/components/SkillCard.jsx
 import React from 'react';
-import { Card, Text, Badge } from '@mantine/core';
+import { Card, Text, Group } from '@mantine/core';
 
-const SkillCard = ({ skill }) => {
+function SkillCard({ icon, title, description }) {
     return (
-        <Card shadow="sm" p="md" radius="md" withBorder>
-            <Text weight={600}>{skill.nome}</Text>
-            <Badge color="blue" mt="sm">
-                {skill.nivel}
-            </Badge>
+        <Card shadow="sm" p="lg" radius="md" withBorder>
+            <Group position="apart">
+                <Text weight={700}>{icon}</Text>
+                <Text>{title}</Text>
+            </Group>
+            <Text size="sm" color="dimmed" mt="sm">{description}</Text>
         </Card>
     );
-};
+}
 
 export default SkillCard;

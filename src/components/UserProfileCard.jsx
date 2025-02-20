@@ -1,26 +1,18 @@
 import React from 'react';
-import { Card, Image, Title, Text, Center } from '@mantine/core';
+import { Card, Image, Title, Text } from '@mantine/core';
 
-const UserProfileCard = ({ user }) => {
+function UserProfileCard({ usuario }) {
+    if (!usuario) {
+        return <Text>Carregando perfil...</Text>;
+    }
+
     return (
         <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Center>
-                <Image
-                    src="/assets/profile.jpeg"
-                    alt="Foto de Perfil"
-                    width={200}
-                    height={200}
-                    radius="50%"
-                />
-            </Center>
-            <Title order={3} align="center" mt="md">
-                {user.nome}
-            </Title>
-            <Text align="center" color="dimmed" size="sm">
-                {user.sobre}
-            </Text>
+            <Image src="/assets/WhatsApp.jpeg" alt="Foto de Perfil" height={200} fit="contain" />
+            <Title order={3} mt="md">{usuario.nome || 'Nome não disponível'}</Title>
+            <Text>{usuario.sobre || 'Descrição não disponível'}</Text>
         </Card>
     );
-};
+}
 
 export default UserProfileCard;

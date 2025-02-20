@@ -1,24 +1,18 @@
 import React from 'react';
-import { Group, Anchor, Text } from '@mantine/core';
+import { Text, Group, Anchor } from '@mantine/core';
 
-const Footer = () => {
-  return (
-    <footer style={{ backgroundColor: '#f4f4f4', padding: '20px', textAlign: 'center' }}>
-      <Group position="center" spacing="xs">
-        <Anchor href="https://www.linkedin.com/in/luciano-rogerio-colombo-sousa-28068820b/" target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </Anchor>
-        <div>
-        <Anchor href="https://github.com/lucianocolombo" target="_blank" rel="noopener noreferrer">
-          GitHub
-        </Anchor>
-        </div>
-      </Group>
-      <Text size="sm" color="dimmed" mt="sm">
-        © 2025 Luciano Rogério Colombo. Todos os direitos reservados.
-      </Text>
-    </footer>
-  );
-};
+function Footer() {
+    return (
+        <footer style={{ textAlign: 'center', padding: '1rem', backgroundColor: '#f8f9fa' }}>
+            <Group spacing="xs" position="center">
+                <Anchor href="/">Home</Anchor>
+                <Anchor href="/resume">Currículo</Anchor>
+                <Anchor href="/portfolio">Portfólio</Anchor>
+                <Anchor href="/contact">Contato</Anchor>
+            </Group>
+            <Text size="sm">© 2025 Luciano Colombo. Todos os direitos reservados.</Text>
+        </footer>
+    );
+}
 
 export default Footer;

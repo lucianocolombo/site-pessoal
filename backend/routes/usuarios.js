@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const result = await db.query('SELECT * FROM usuarios');
-        res.json(result.rows); // No PostgreSQL, os resultados estão em `result.rows`
+        res.json(result.rows);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao buscar usuários' });

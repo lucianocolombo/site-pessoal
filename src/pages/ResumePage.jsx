@@ -1,52 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Title, List, Paper, Text } from '@mantine/core';
-import { fetchExperiencias, fetchFormacao } from '../api';
+import { fetchExperiencias, fetchEducacao } from '../api';
+import { Title, SimpleGrid, Text } from '@mantine/core';
+import ExperienceCard from '../components/ExperienceCard';
+import EducationCard from '../components/EducationCard';
 
-const ResumePage = () => {
+function ResumePage() {
     const [experiencias, setExperiencias] = useState([]);
-    const [formacao, setFormacao] = useState([]);
+    const [educacao, setEducacao] = useState([]);
 
     useEffect(() => {
-        const loadData = async () => {
-            const expData = await fetchExperiencias();
-            const formData = await fetchFormacao();
-            setExperiencias(expData);
-            setFormacao(formData);
-        };
-        loadData();
+        fetchExperiencias().then(setExperiencias);
+        fetchEducacao().then(setEducacao);
     }, []);
 
     return (
-        <Container size="lg" py="xl">
-            <Title order={2} mb="md">
-                Experiência Profissional
-            </Title>
-            <Paper shadow="sm" p="md" withBorder>
-                <List>
-                    {experiencias.map((exp) => (
-                        <List.Item key={exp.id}>
-                            <Text weight={600}>{exp.cargo} - {exp.empresa}</Text>
-                            <Text size="sm" color="dimmed">{exp.descricao}</Text>
-                        </List.Item>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
+            {/* Experiências Profissionais */}
+            <section>
+                <Title order={2} mb="md">Experiência Profissional</Title>
+                <SimpleGrid cols={2} spacing="lg">
+                    {experiencias.map((exp, index) => (
+                        <ExperienceCard key={index} {...exp} />
                     ))}
-                </List>
-            </Paper>
+                </SimpleGrid>
+            </section>
 
-            <Title order={2} mt="xl" mb="md">
-                Formação Acadêmica
-            </Title>
-            <Paper shadow="sm" p="md" withBorder>
-                <List>
-                    {formacao.map((item) => (
-                        <List.Item key={item.id}>
-                            <Text weight={600}>{item.instituicao} - {item.curso}</Text>
-                            <Text size="sm" color="dimmed">{item.descricao}</Text>
-                        </List.Item>
+            {/* Formação Acadêmica */}
+            <section mt="xl">
+                <Title order={2} mb="md">Formação Acadêmica</Title>
+                <SimpleGrid cols={2} spacing="lg">
+                    {educacao.map((edu, index) => (
+                        <EducationCard key={index} {...edu} />
                     ))}
-                </List>
-            </Paper>
-        </Container>
+                </SimpleGrid>
+            </section>
+
+            {/* Download do Currículo */}
+            <section mt="xl">
+                <Title order={2} mb="md">Download do Currículo</Title>
+                <Text>
+                    <a href="/resume.pdf" download>
+                        Baixar Currículo (PDF)
+                    </a>
+                </Text>
+            </section>
+        </div>
     );
-};
+}
 
 export default ResumePage;
