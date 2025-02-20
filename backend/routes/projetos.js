@@ -5,8 +5,8 @@ const db = require('../db');
 // Rota GET para listar projetos do portfólio
 router.get('/', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM projetos');
-        res.json(rows);
+        const result = await db.query('SELECT * FROM usuarios');
+        res.json(result.rows);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Erro ao listar projetos do portfólio' });
