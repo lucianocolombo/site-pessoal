@@ -8,7 +8,7 @@ function UserProfileCard({ usuario }) {
 
     return (
         <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Image src="/assets/WhatsApp.jpg" alt="Foto de Perfil" height={200} fit="contain" />
+            <Image src={`${process.env.PUBLIC_URL}/assets/profile.jpeg`} alt="Foto de Perfil" height={200} fit="contain" />
             <Title order={3} mt="md">{usuario.nome || 'Nome não disponível'}</Title>
             <Text>{usuario.sobre || 'Descrição não disponível'}</Text>
         </Card>

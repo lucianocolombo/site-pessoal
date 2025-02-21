@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { fetchProjetos } from '../api';
+import React from 'react';
 import { Title, SimpleGrid } from '@mantine/core';
-import ProjectCard from '../components/ProjectCard';
+import SkillCard from '../components/SkillCard';
 
 function PortfolioPage() {
-    const [projetos, setProjetos] = useState([]);
-
-    useEffect(() => {
-        fetchProjetos().then(setProjetos);
-    }, []);
-
     return (
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
-            {/* Portfólio */}
-            <section>
-                <Title order={2} mb="md">Portfólio</Title>
-                <SimpleGrid cols={3} spacing="lg">
-                    {projetos.map((projeto, index) => (
-                        <ProjectCard key={index} {...projeto} />
-                    ))}
-                </SimpleGrid>
-            </section>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '2rem' }}>
+            <Title order={1} mb="md">Portfólio</Title>
+            <SimpleGrid cols={3} spacing="lg" breakpoints={[{ maxWidth: '768px', cols: 2 }, { maxWidth: '480px', cols: 1 }]}>
+                <SkillCard icon="💻" title="Projeto Web" description="Descrição do projeto web." />
+                <SkillCard icon="📱" title="App Mobile" description="Descrição do app mobile." />
+                <SkillCard icon="🎨" title="Design UI/UX" description="Descrição do design." />
+            </SimpleGrid>
         </div>
     );
 }

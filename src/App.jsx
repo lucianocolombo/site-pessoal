@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MantineProvider, AppShell } from '@mantine/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,16 +15,14 @@ const App = () => {
         colorScheme: 'light',
         fontFamily: 'Arial, sans-serif',
         primaryColor: 'blue',
+        defaultRadius: 'md', // Mantém os cantos arredondados
       }}
+      inherit
       withGlobalStyles
       withNormalizeCSS
     >
       <Router>
-        <AppShell
-          header={<Header />}
-          footer={<Footer />}
-          padding="md"
-        >
+        <AppShell header={<Header />} footer={<Footer />} padding="md">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/curriculo" element={<ResumePage />} />

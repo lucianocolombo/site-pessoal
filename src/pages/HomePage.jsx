@@ -4,8 +4,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import UserProfileCard from '../components/UserProfileCard';
 import SkillCard from '../components/SkillCard';
-import SocialLinks from '../components/SocialLinks';
-import ContactForm from '../components/ContactForm';
 import { fetchUsuario } from '../api';
 
 function HomePage() {
@@ -26,7 +24,7 @@ function HomePage() {
 
             {/* Conteúdo Principal */}
             <div style={{
-                maxWidth: '1400px', // Largura máxima ajustada para telas grandes
+                maxWidth: '1400px',
                 margin: '0 auto',
                 padding: '2rem',
                 display: 'flex',
@@ -42,22 +40,16 @@ function HomePage() {
                 {/* Habilidades */}
                 <section mt="xl" style={{ width: '100%' }}>
                     <Title order={2} mb="md">Minhas Habilidades</Title>
-                    <Group spacing="xl" position="center" style={{ flexWrap: 'wrap' }}>
-                        <SkillCard icon="💻" title="Desenvolvimento Web" description="React, Node.js, Express" />
-                        <SkillCard icon="📱" title="Mobile" description="React Native, Flutter" />
-                        <SkillCard icon="🎨" title="Design UI/UX" description="Figma, Adobe XD" />
-                        <SkillCard icon="📊" title="Análise de Dados" description="Python, Pandas, Matplotlib" />
-                        <SkillCard icon="⚙️" title="DevOps" description="Docker, Kubernetes, CI/CD" />
-                    </Group>
-                </section>
-
-                {/* Contato */}
-                <section mt="xl" style={{ width: '100%' }}>
-                    <Title order={2} mb="md">Contato</Title>
-                    <Group position="center">
-                        <SocialLinks />
-                    </Group>
-                    <ContactForm />
+                    {/* Contêiner para os Cards de Habilidades */}
+                    <div className="skills-container">
+                        <Group spacing="xl" position="center" style={{ flexWrap: 'wrap' }}>
+                            <SkillCard icon="💻" title="Desenvolvimento Web" description="React, Node.js, Express" />
+                            <SkillCard icon="📱" title="Mobile" description="React Native, Flutter" />
+                            <SkillCard icon="🎨" title="Design UI/UX" description="Figma, Adobe XD" />
+                            <SkillCard icon="📊" title="Análise de Dados" description="Python, Pandas, Matplotlib" />
+                            <SkillCard icon="⚙️" title="DevOps" description="Docker, Kubernetes, CI/CD" />
+                        </Group>
+                    </div>
                 </section>
             </div>
 
